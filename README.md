@@ -112,6 +112,7 @@ const baseURL = window.location.origin;
 ---
 
 🧼 Important Notes
+
 Keep your React source code outside the plugin directory to avoid committing dev dependencies and source code to WordPress.
 
 Only the final /build folder should be inside the plugin.
