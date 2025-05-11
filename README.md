@@ -67,7 +67,7 @@ npm run build
 
 ---
 
-🧩 Shortcode Usage in WordPress
+### 🧩 Shortcode Usage in WordPress
 
 Use the shortcode [lcw_react_post_grid] anywhere in your post or page.
 
@@ -103,7 +103,7 @@ Use the shortcode [lcw_react_post_grid] anywhere in your post or page.
 
 ---
 
-⚙️ Dev Tips
+### ⚙️ Dev Tips
 - The React app assumes window.wpApiSettings is localized from WordPress (using wp_localize_script).
 - It fetches data from the current domain using:
 ```bash
@@ -112,7 +112,7 @@ const baseURL = window.location.origin;
 
 ---
 
-🧼 Important Notes
+### 🧼 Important Notes
 
 Keep your React source code outside the plugin directory to avoid committing dev dependencies and source code to WordPress.
 
