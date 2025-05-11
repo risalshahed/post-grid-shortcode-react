@@ -78,14 +78,7 @@ Use the shortcode [lcw_react_post_grid] anywhere in your post or page.
 
 ✅ With Custom Parameters
 ```bash
-[lcw_react_post_grid
-    post_type="posts"
-    columns="3"
-    posts_per_page="6"
-    taxonomy="category"
-    terms="news"
-    read_more_text="Explore"
-]
+[lcw_react_post_grid post_type="posts" columns="3" posts_per_page="6" taxonomy="category" terms="news" read_more_text="Explore"]
 ```
 
 ---
