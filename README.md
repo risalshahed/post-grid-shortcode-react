@@ -23,13 +23,16 @@ This repository contains the **React source code only**, not the full WordPress 
 ## Folder Structure
 
 ### WordPress Plugin
+```plaintext
 📁 your-plugin-folder (e.g., wp-content/plugins/your-plugin-directory/)
 ├── build/ <-- 🟢 Vite build output will be placed here
 ├── plugin_root_file.php
 ├── inc/
 │   └── shortcode.php        # Registers shortcode and enqueues assets
+```
 
 ### React App (Outside Plugin)
+```plaintext
 ├── src/
 │   ├── main.jsx             # React entry file
 │   ├── App.jsx              # Root App component
@@ -38,6 +41,7 @@ This repository contains the **React source code only**, not the full WordPress 
 ├── index.html               # Vite entry point
 ├── vite.config.js           # Vite configuration
 └── package.json
+```
 
 ---
 
