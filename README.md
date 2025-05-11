@@ -114,10 +114,7 @@ const baseURL = window.location.origin;
 
 ### 🧼 Important Notes
 
-Keep your React source code outside the plugin directory to avoid committing dev dependencies and source code to WordPress.
-
-Only the final /build folder should be inside the plugin.
-
-Vite's outDir is set to ../your-plugin-directory/build to reflect this.
-
-Never place node_modules, vite.config.js, or React files inside your plugin directory.
+- Keep your React source code outside the plugin directory to avoid committing dev dependencies and source code to WordPress.
+- Only the final /build folder should be inside the plugin.
+- Vite's outDir is set to ../your-plugin-directory/build to reflect this.
+- Never place node_modules, vite.config.js, or React files inside your plugin directory.
