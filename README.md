@@ -68,6 +68,7 @@ npm run build
 ---
 
 🧩 Shortcode Usage in WordPress
+
 Use the shortcode [lcw_react_post_grid] anywhere in your post or page.
 
 ✅ Default Usage
