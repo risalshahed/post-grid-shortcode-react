@@ -35,7 +35,7 @@ This repository contains the **React source code only**, not the full WordPress 
 ```plaintext
 ├── src/
 │   ├── main.jsx             # React entry file
-│   ├── App.jsx              # Root App component
+│   ├── App.jsx              # React App component
 │   └── components/
 │       └── PostGrid.jsx     # Main post grid component
 ├── index.html               # Vite entry point
