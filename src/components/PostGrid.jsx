@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Masonry from 'react-responsive-masonry';
 
 const PostGrid = ({ postType, columns, postsPerPage, taxonomy, terms, readMoreText }) => {
   const [posts, setPosts] = useState([]);
@@ -6,7 +7,7 @@ const PostGrid = ({ postType, columns, postsPerPage, taxonomy, terms, readMoreTe
   const [showExcerpt, setShowExcerpt] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('');
-
+  
   const toggleExcerpt = postId => {
     setShowExcerpt(prev => ({
       ...prev,
@@ -14,6 +15,7 @@ const PostGrid = ({ postType, columns, postsPerPage, taxonomy, terms, readMoreTe
     }))
   }
 
+  // Fetch Featured Images for Different Posts
   const fetchImages = async () => {
     const imageMap = {};
 
@@ -39,7 +41,7 @@ const PostGrid = ({ postType, columns, postsPerPage, taxonomy, terms, readMoreTe
     fetchImages();
   }, [posts]);
 
-
+  // fetch All Posts
   useEffect(() => {
     const url = new URL(`${window.wpApiSettings.root}wp/v2/${postType}`);
     url.searchParams.append('per_page', postsPerPage);
@@ -64,7 +66,7 @@ const PostGrid = ({ postType, columns, postsPerPage, taxonomy, terms, readMoreTe
   const filteredPosts = posts?.filter(post => {
     const title = post.title.rendered.toLowerCase();
     const excerptVisible = showExcerpt[post.id];
-    const excerpt = excerptVisible ? post.excerpt.rendered.toLowerCase() : '';
+    const excerpt = excerptVisible && post.excerpt.rendered.toLowerCase();
     const search = searchTerm.toLowerCase();
     return (
       title.includes(search) ||
@@ -105,42 +107,46 @@ const PostGrid = ({ postType, columns, postsPerPage, taxonomy, terms, readMoreTe
         />
       </div>
       {/* Post Grid */}
-      <div className={`lcw-posts-grid columns-${columns}`}>
-        {
-          // posts?.map(post => (
-          sortedPosts?.map(post => (
-            <div key={post.id} className="lcw-post-item">
-              {/* <p>
-                Posted on: {
-                  new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })
-                }
-              </p> */}
-              <a href={post.link} className="lcw-post-thumb">
-                {featuredImages[post.id] && (
-                  <img
-                    src={featuredImages[post.id]}
-                    alt={post.title.rendered}
-                  />
+        <Masonry gutter='16px' className={`lcw-posts-grid columns-${columns}`}>
+          {
+            // posts?.map(post => (
+            sortedPosts?.map(post => (
+              <div
+                key={post.id}
+                className="lcw-post-item"
+              >
+                {/* <p>
+                  Posted on: {
+                    new Date(post.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })
+                  }
+                </p> */}
+                <a href={post.link} className="lcw-post-thumb">
+                  {featuredImages[post.id] && (
+                    <img
+                      src={featuredImages[post.id]}
+                      alt={post.title.rendered}
+                    />
+                  )}
+                </a>
+                <h3 className="lcw-post-title">
+                  <a href={post.link} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                </h3>
+                <button onClick={() => toggleExcerpt(post.id)}>
+                  {showExcerpt[post.id] ? 'Hide' : 'Show'} Excerpt
+                </button>
+                {showExcerpt[post.id] && (
+                  <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
                 )}
-              </a>
-              <h3 className="lcw-post-title">
-                <a href={post.link} dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-              </h3>
-              <button onClick={() => toggleExcerpt(post.id)}>
-                {showExcerpt[post.id] ? 'Hide' : 'Show'} Excerpt
-              </button>
-              {showExcerpt[post.id] && (
-                <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
-              )}
-              <a href={post.link} className="lcw-readmore-btn">{readMoreText}</a>
-            </div>
-          ))
-        }
-      </div>
+                <a href={post.link} className="lcw-readmore-btn">{readMoreText}</a>
+              </div>
+            ))
+          }
+        </Masonry>
+      {/* </Masonry> */}
     </>
   );
 };
